@@ -29,4 +29,32 @@ return {
       })
     end,
   },
+  {
+    'folke/noice.nvim',
+    event = 'VeryLazy',
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+      'rcarriga/nvim-notify', -- Optional: for notifications
+    },
+    opts = {
+      cmdline = {
+        view = 'cmdline_popup', -- Use popup view instead of bottom
+      },
+      lsp = {
+        -- Override markdown rendering to use Treesitter
+        override = {
+          ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+          ['vim.lsp.util.stylize_markdown'] = true,
+          ['cmp.entry.get_documentation'] = true,
+        },
+      },
+      presets = {
+        bottom_search = false, -- Use classic bottom search instead of cmdline popup
+        command_palette = true, -- Position the cmdline and popupmenu together
+        long_message_to_split = true, -- Long messages in a split
+        inc_rename = false, -- Enables input dialog for inc-rename.nvim
+        lsp_doc_border = true, -- Add border to hover docs and signature help
+      },
+    },
+  },
 }
