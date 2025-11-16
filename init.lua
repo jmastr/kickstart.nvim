@@ -150,6 +150,17 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   end,
 })
 
+-- Enable spell checking for git commits
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Enable spell checking for git commits',
+  group = vim.api.nvim_create_augroup('git_commit_spell', { clear = true }),
+  pattern = { 'gitcommit', 'gitrebase' },
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.spelllang = 'en_us'
+  end,
+})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
